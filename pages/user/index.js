@@ -99,7 +99,7 @@ Page({
 				App.WxService.navigateTo(path)
 		}
     },
-    logout() {
+    /*logout() {
     	App.WxService.showModal({
             title: '友情提示', 
             content: '确定要登出吗？', 
@@ -116,5 +116,5 @@ Page({
     			App.WxService.redirectTo('/pages/login/index')
     		}
     	})
-    },
+    },*/
 })

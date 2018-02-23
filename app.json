@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/start/index",
     "pages/index/index",
     "pages/classify/index",
     "pages/cart/index",
@@ -17,7 +16,6 @@
     "pages/help/detail/index",
     "pages/search/index",
     "pages/about/index",
-    "pages/login/index",
     "pages/user/index"
   ],
   "window": {

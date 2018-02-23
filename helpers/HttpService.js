@@ -39,7 +39,7 @@ class HttpService extends WxRequest {
             	if(response.statusCode === 401) {
                     wx.removeStorageSync('token')
                     wx.redirectTo({
-                        url: '/pages/login/index'
+                        url: '/pages/index/index'
                     })
                 }
                 return response
