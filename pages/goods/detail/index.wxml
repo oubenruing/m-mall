@@ -11,9 +11,24 @@
     </view>
     <view class="shopping-container">
         <view class="name">{{ goods.item.name }}</view>
-        <view class="price">¥ {{ goods.item.price }}</view>
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="price">¥ {{ goods.item.price }}</view>
+          </view>
+          <view class="weui-flex__item">
+            <view class="quantity-wrapper">
+              <view class="customize-qua">
+                  <view class="quantity-decrease" bindtap="decrease" data-value="{{ itemNum }}"></view>
+                  <input class="quantity" type="number" value="{{ itemNum }}"/>
+                  <view class="quantity-increase" bindtap="increase" data-value="{{ itemNum }}"></view>
+              </view>
+            </view>
+          </view>
+        </view>
         <text class="remark">{{ goods.item.remark }}</text>
+        
     </view>
+    
     <view class="btn-plus" bindtap="addCart">
         <image class="icon" src="../../../assets/images/iconfont-plus-circle.png" />
         <text>加入购物车</text>

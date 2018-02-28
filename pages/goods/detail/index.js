@@ -10,7 +10,8 @@ Page({
         current: 0,
         goods: {
             item: {}
-        }
+        },
+        itemNum: 1
     },
     swiperchange(e) {
         this.setData({
@@ -28,7 +29,8 @@ Page({
     },
     addCart(e) {
         const goods = this.data.goods.item._id
-        App.HttpService.addCartByUser(goods)
+        const total = this.data.itemNum
+        App.HttpService.addCartByUser(goods,total)
         .then(res => {
             const data = res.data
             console.log(data)
@@ -68,5 +70,26 @@ Page({
                 })
         	}
         })
+    },
+    bindKeyInput(e) {
+      const num = Math.abs(e.value)
+      if (num < 0 || num > 100) 
+        this.setData({
+          itemNum: num
+        })
+    },
+    decrease(e) {
+      const num = Math.abs(e.currentTarget.dataset.value)
+      if (num != 1) 
+        this.setData({
+          itemNum: num - 1
+        })
+    },
+    increase(e) {
+      const num = Math.abs(e.currentTarget.dataset.value)
+      if (num != 100)
+      this.setData ({
+        itemNum: num + 1
+      })
     },
 })

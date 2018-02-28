@@ -9,7 +9,7 @@
         <text class="info-meta" bindtap="del" data-id="{{ item._id }}">删除</text>
     </view>
     <view class="weui-panel__bd">
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <view  class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
             <view class="weui-media-box__hd weui-media-box__hd_in-appmsg" bindtap="navigateTo" data-id="{{ item.goods._id }}">
                 <image class="weui-media-box__thumb" src="{{ item.goods.thumb_url }}" />
             </view>
@@ -31,11 +31,12 @@
                     </view>
                 </view>
             </view>
-        </navigator>
+        </view>
     </view>
 </view>
 
 <view class="button-sp-area" wx:if="{{ !!carts.items.length }}">
-    <button class="weui-btn" type="primary" bindtap="confirmOrder">去结算</button>
-    <button class="weui-btn" type="warn" bindtap="clear">清空</button>
+    <button wx:if="{{ !canEdit }}" class="weui-btn" type="primary" bindtap="confirmOrder">去结算</button>
+    <button wx:if="{{ !canEdit }}" class="weui-btn" type="warn" bindtap="clear">清空</button>
+    <button wx:if="{{ !canEdit }}" class="weui-btn" type="default" bindtap="onTapEdit">完成</button>
 </view>

@@ -111,10 +111,11 @@ class HttpService extends WxRequest {
 		return this.getRequest(this.$$path.cart)
 	}
 
-	addCartByUser(goods) {
+	addCartByUser(goods,total) {
 		return this.postRequest(this.$$path.cart, {
 			data: {
 				goods,
+        total
 			},
 		})
 	}

@@ -106,6 +106,11 @@ Page({
             canEdit: !!e.currentTarget.dataset.value
         })
     },
+    finishEdit(e) {
+      this.setData({
+        canEdit: !!e.currentTarget.dataset.value
+      })
+    },
     bindKeyInput(e) {
         const id = e.currentTarget.dataset.id
         const total = Math.abs(e.detail.value)
