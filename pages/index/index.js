@@ -57,28 +57,36 @@ Page({
     },
 
     wechatSignIn(cb) {
-      if (!App.WxService.getStorageSync('token')) {
-        return App.WxService.login()
-        .then(data => {
-          console.log('wechatSignIn', data.code)
-          return App.HttpService.wechatSignIn({
-            code: data.code
+      App.WxService.checkSession()
+      .then(function(){
+        console.log('checkSession OK')
+        cb()
+      })
+      .catch(function(){
+        console.log('checkSession NOT')
+        if (!App.WxService.getStorageSync('token')) {
+          return App.WxService.login()
+          .then(data => {
+            console.log('wechatSignIn', data.code)
+            return App.HttpService.wechatSignIn({
+              code: data.code
+            })
           })
-        })
-        .then(res => {
-          const data = res.data
-          console.log('wechatSignIn', data)
-          if (data.meta.code == 0) {
-            App.WxService.setStorageSync('token', data.data.token)
-            cb()
-          } else if (data.meta.code == 40029) {
-            App.showModal()
-          } else {
-            App.wechatSignUp(cb)
-          }
-        })
-      }
-      else cb()
+          .then(res => {
+            const data = res.data
+            console.log('wechatSignIn', data)
+            if (data.meta.code == 0) {
+              App.WxService.setStorageSync('token', data.data.token)
+              cb()
+            } else if (data.meta.code == 40029) {
+              App.showModal()
+            } else {
+              App.wechatSignUp(cb)
+            }
+          })
+        }
+        else cb()
+      });
     },
     wechatSignUp(cb) {
       App.WxService.login()

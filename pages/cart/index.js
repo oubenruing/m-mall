@@ -102,9 +102,9 @@ Page({
         })
     },
     onTapEdit(e) {
-        this.setData({
-            canEdit: !!e.currentTarget.dataset.value
-        })
+      this.setData({
+        canEdit: !!e.currentTarget.dataset.value
+      })
     },
     finishEdit(e) {
       this.setData({

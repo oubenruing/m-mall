@@ -28,9 +28,17 @@
         <text class="remark">{{ goods.item.remark }}</text>
         
     </view>
-    
-    <view class="btn-plus" bindtap="addCart">
-        <image class="icon" src="../../../assets/images/iconfont-plus-circle.png" />
-        <text>加入购物车</text>
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <view class="btn-plus" bindtap="addCart" style="width:50%;">
+            <image class="icon" src="../../../assets/images/iconfont-plus-circle.png" />
+            <text>加入购物车</text>
+        </view>
+      </view>
+      <view class="weui-flex__item">
+        <view class="btn-plus" bindtap="check" style="left:50%; width:50%; background-color:#479de6;color:#FFF;">
+            <text>立即购买</text>
+        </view>
+      </view>
     </view>
 </view>

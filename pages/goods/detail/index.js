@@ -92,4 +92,41 @@ Page({
         itemNum: num + 1
       })
     },
+    check() {
+      const items = {
+        item: []
+      }
+      items.item.push(
+        {
+          id: this.data.goods._id,
+          total: this.data.itemNum,
+          goods: this.data.goods,
+        }
+      )
+      App.WxService.setStorageSync('confirmOrder', items.item)
+      App.WxService.navigateTo('/pages/order/confirm/index')
+    },
+    /*check() {
+      const address_id = this.data.address_id
+      const params = {
+        items: [],
+        address_id: address_id,
+      }
+      params.items.push({
+        id: this.data.id,
+        total: this.data.itemNum,
+      })
+      console.log(params)
+      App.HttpService.postOrder(params)
+        .then(res => {
+          const data = res.data
+          console.log(data)
+          if (data.meta.code == 0) {
+            App.WxService.redirectTo('/pages/order/detail/index', {
+              id: data.data._id
+            })
+          }
+        })
+    },*/
+    
 })

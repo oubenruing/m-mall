@@ -38,5 +38,5 @@
 <view class="button-sp-area" wx:if="{{ !!carts.items.length }}">
     <button wx:if="{{ !canEdit }}" class="weui-btn" type="primary" bindtap="confirmOrder">去结算</button>
     <button wx:if="{{ !canEdit }}" class="weui-btn" type="warn" bindtap="clear">清空</button>
-    <button wx:if="{{ !canEdit }}" class="weui-btn" type="default" bindtap="onTapEdit">完成</button>
+    <!--button wx:if="{{ !canEdit }}" class="weui-btn" type="default" bindtap="onTapEdit">完成</button-->
 </view>
