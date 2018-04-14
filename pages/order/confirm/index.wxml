@@ -5,7 +5,7 @@
                 <view class="weui-media-box__title weui-media-box__title_in-text">{{ address.item.name }} {{ address.item.gender === 'female' ? '女士' : '先生' }} {{ address.item.tel }}</view>
                 <view class="weui-media-box__desc">{{ address.item.address }}</view>
                 <view class="addr">
-                    <image class="icon" src="../../assets/images/iconfont-addr-default.png" />
+                    <!--image class="icon" src="../../assets/images/iconfont-addr-default.png" /-->
                 </view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
             </view>

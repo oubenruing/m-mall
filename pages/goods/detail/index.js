@@ -92,41 +92,40 @@ Page({
         itemNum: num + 1
       })
     },
+    getNowFormatDate() {
+      var date = new Date();
+      var seperator1 = "-";
+      var seperator2 = ":";
+      var seperator3 = ".";
+      var year = date.getFullYear();
+      var month = date.getMonth() + 1;
+      var strDate = date.getDate();
+      if(month >= 1 && month <= 9) {
+        month = "0" + month;
+      }
+      if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+      }
+      var currentdate = year + seperator1 + month + seperator1 + strDate
+      + "T" + date.getHours() + seperator2 + date.getMinutes()
+        + seperator2 + date.getSeconds() + seperator3 + date.getMilliseconds() + "Z";
+      return currentdate;
+    },
     check() {
       const items = {
-        item: []
+        item: [],
       }
       items.item.push(
         {
-          id: this.data.goods._id,
-          total: this.data.itemNum,
-          goods: this.data.goods,
+          //id: this.data.goods._id,
+          goods: this.data.goods.item,
+          amount: this.data.goods.item.price,
+          totalAmount: this.data.goods.item.price * this.data.itemNum,
+          create_at : this.getNowFormatDate(),
+          total: this.data.itemNum
         }
       )
       App.WxService.setStorageSync('confirmOrder', items.item)
       App.WxService.navigateTo('/pages/order/confirm/index')
-    },
-    /*check() {
-      const address_id = this.data.address_id
-      const params = {
-        items: [],
-        address_id: address_id,
-      }
-      params.items.push({
-        id: this.data.id,
-        total: this.data.itemNum,
-      })
-      console.log(params)
-      App.HttpService.postOrder(params)
-        .then(res => {
-          const data = res.data
-          console.log(data)
-          if (data.meta.code == 0) {
-            App.WxService.redirectTo('/pages/order/detail/index', {
-              id: data.data._id
-            })
-          }
-        })
-    },*/
-    
+    }
 })
