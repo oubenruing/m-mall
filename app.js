@@ -14,9 +14,9 @@ App({
 	onHide() {
 		console.log('onHide')
 	},
-	getUserInfo() {
+	/*getUserInfo() {
 		return this.WxService.login()
-		.then(data => {
+		/*.then(data => {
             console.log(data)
 			return this.WxService.getUserInfo()
 		})
@@ -25,7 +25,7 @@ App({
 			this.globalData.userInfo = data.userInfo
 			return this.globalData.userInfo
 		})
-	},
+	},*/
 	globalData: {
 		userInfo: null
 	},

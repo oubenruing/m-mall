@@ -19,14 +19,17 @@ Page({
         // console.log(e.detail.current)
     },
     onLoad() {
-        this.banner = App.HttpResource('/banner/:id', {id: '@id'})
-        this.goods = App.HttpResource('/goods/:id', {id: '@id'})
-        this.classify = App.HttpResource('/classify/:id', {id: '@id'})
+       //this.banner = App.HttpResource('/banner/:id', {id: '@id'})
+       //this.goods = App.HttpResource('/goods/:id', {id: '@id'})
+       //this.classify = App.HttpResource('/classify/:id', {id: '@id'})
         this.wechatSignIn(this.loadItems)
         //this.getBanners()
         //this.getClassify()
     },
     loadItems() {
+      this.banner = App.HttpResource('/banner/:id', { id: '@id' })
+      this.goods = App.HttpResource('/goods/:id', { id: '@id' })
+      this.classify = App.HttpResource('/classify/:id', { id: '@id' })
       this.getBanners()
       this.getClassify()
     },
@@ -57,13 +60,13 @@ Page({
     },
 
     wechatSignIn(cb) {
-      App.WxService.checkSession()
+      /*App.WxService.checkSession()
       .then(function(){
         console.log('checkSession OK')
         cb()
       })
       .catch(function(){
-        console.log('checkSession NOT')
+        console.log('checkSession NOT')*/
         if (!App.WxService.getStorageSync('token')) {
           return App.WxService.login()
           .then(data => {
@@ -78,15 +81,38 @@ Page({
             if (data.meta.code == 0) {
               App.WxService.setStorageSync('token', data.data.token)
               cb()
-            } else if (data.meta.code == 40029) {
-              App.showModal()
-            } else {
-              App.wechatSignUp(cb)
+            } /*else if (data.meta.code == 40029) {
+              wx.showModal({
+                title: '提示',
+                content: '登陆出错，请删除小程序或5分钟后重试',
+                success: function (res) {
+                  if (res.confirm) {
+                  }
+                }
+              })
+            }*/ else {
+              App.WxService.login()
+                .then(data => {
+                  console.log('wechatSignUp', data.code)
+                  return App.HttpService.wechatSignUp({
+                    code: data.code
+                  })
+                })
+                .then(res => {
+                  const data = res.data
+                  console.log('wechatSignUp', data)
+                  if (data.meta.code == 0) {
+                    return App.WxService.setStorageSync('token', data.data.token)
+                    cb()
+                  } else if (data.meta.code == 40029) {
+                    wx.showModal()
+                  }
+                })
             }
           })
         }
         else cb()
-      });
+      //});
     },
     wechatSignUp(cb) {
       App.WxService.login()
@@ -100,11 +126,12 @@ Page({
           const data = res.data
           console.log('wechatSignUp', data)
           if (data.meta.code == 0) {
-            App.WxService.setStorageSync('token', data.data.token)
+            return App.WxService.setStorageSync('token', data.data.token)
             cb()
           } else if (data.meta.code == 40029) {
-            App.showModal()
+            wx.showModal()
           }
+        
         })
     },
     getBanners() {

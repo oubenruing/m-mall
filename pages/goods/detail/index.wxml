@@ -30,13 +30,13 @@
     </view>
     <view class="weui-flex">
       <view class="weui-flex__item">
-        <view class="btn-plus" bindtap="addCart" style="width:50%;">
+        <view class="btn-plus" bindtap="addCart" style="width:50%;height:60px">
             <image class="icon" src="../../../assets/images/iconfont-plus-circle.png" />
             <text>加入购物车</text>
         </view>
       </view>
       <view class="weui-flex__item">
-        <view class="btn-plus" bindtap="check" style="left:50%; width:50%; background-color:#479de6;color:#FFF;">
+        <view class="btn-plus" bindtap="check" style="left:50%; width:50%;height:60px;background-color:#479de6;color:#FFF;">
             <text>立即购买</text>
         </view>
       </view>

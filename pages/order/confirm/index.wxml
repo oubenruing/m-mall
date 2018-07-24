@@ -27,6 +27,6 @@
         </view>
     </view>
     <view class="weui-form-preview__ft">
-        <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="addOrder">提交订单</navigator>
+        <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" bindtap="addOrder">立即付款</navigator>
     </view>
 </view>

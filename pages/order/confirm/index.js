@@ -87,6 +87,7 @@ Page({
         const params = {
             items: [], 
             address_id: address_id, 
+            totalAmount: this.data.carts.totalAmount,
         }
         this.data.carts.items.forEach(n => {
             params.items.push({
@@ -96,6 +97,9 @@ Page({
         })
         console.log(params)
         App.HttpService.postOrder(params)
+        .then(res=>{
+          console.log(res)
+        })
         .then(res => {
             const data = res.data
             console.log(data)

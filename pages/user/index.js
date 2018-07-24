@@ -16,8 +16,8 @@ Page({
 			}, 
 			{
 				icon: '../../assets/images/iconfont-kefu.png',
-				text: '联系客服',
-				path: '18521708248',
+				text: '联系店长',
+				path: '',
 			}, 
 			{
 				icon: '../../assets/images/iconfont-help.png',
@@ -26,11 +26,11 @@ Page({
 			},
 		],
 		settings: [
-			{
+		/*	{
 				icon: '../../assets/images/iconfont-clear.png',
 				text: '清除缓存',
 				path: '0.0KB'
-			}, 
+			}, */
 			{
 				icon: '../../assets/images/iconfont-about.png',
 				text: '关于我们',
@@ -39,8 +39,8 @@ Page({
 		]
 	},
 	onLoad() {
-		this.getUserInfo()
-		this.getStorageInfo()
+		//this.getUserInfo()
+		//this.getStorageInfo()
 	},
 	navigateTo(e) {
 		const index = e.currentTarget.dataset.index
@@ -56,7 +56,7 @@ Page({
 				App.WxService.navigateTo(path)
 		}
     },
-    getUserInfo() {
+    /*getUserInfo() {
     	const userInfo = App.globalData.userInfo
 
 		if (userInfo) {
@@ -64,17 +64,17 @@ Page({
 				userInfo: userInfo
 			})
 			return
-		}
+		}*/
 
-		App.getUserInfo()
+		/*App.getUserInfo()
 		.then(data => {
             console.log(data)
 			this.setData({
 				userInfo: data
 			})
 		})
-    },
-    getStorageInfo() {
+    },*/
+    /*getStorageInfo() {
     	App.WxService.getStorageInfo()
     	.then(data => {
     		console.log(data)
@@ -82,12 +82,12 @@ Page({
     			'settings[0].path': `${data.currentSize}KB`
     		})
     	})
-    },
+    },*/
     bindtap(e) {
-    	const index = e.currentTarget.dataset.index
+    //	const index = e.currentTarget.dataset.index
 		const path = e.currentTarget.dataset.path
 
-		switch(index) {
+		/*switch(index) {
 			case 0:
 				App.WxService.showModal({
 		            title: '友情提示', 
@@ -95,9 +95,9 @@ Page({
 		        })
 		        .then(data => data.confirm == 1 && App.WxService.clearStorage())
 				break
-			default:
+			default:*/
 				App.WxService.navigateTo(path)
-		}
+		//}
     },
     /*logout() {
     	App.WxService.showModal({
