@@ -27,7 +27,6 @@ Page({
 	},
 	wechatDecryptData() {
 		let code
-
 		App.WxService.login()
 		.then(data => {
 			console.log('wechatDecryptData', data.code)

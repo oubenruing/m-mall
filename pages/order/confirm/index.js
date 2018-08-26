@@ -97,16 +97,36 @@ Page({
         })
         console.log(params)
         App.HttpService.postOrder(params)
-        .then(res=>{
-          console.log(res)
-        })
         .then(res => {
             const data = res.data
             console.log(data)
             if (data.meta.code == 0) {
+              /*
                 App.WxService.redirectTo('/pages/order/detail/index', {
                     id: data.data._id
-                })
+                })*/
+              wx.requestPayment({
+                'timeStamp': data.data.timestamp,
+                'nonceStr': data.data.nonceStr,
+                'package': data.data.package,
+                'signType': 'MD5',
+                'paySign': data.data.paySign,
+                'success': function (res) {
+                  wx.showToast({
+                    title: '支付成功',
+                    icon: 'success',
+                    duration: 2000
+                  })
+                },
+                'fail': function (res) {
+                }
+              })  
+            }
+            else {
+              wx.showToast({
+                title: '支付失败，请重试',
+                duration: 2000
+              })
             }
         })
     },
